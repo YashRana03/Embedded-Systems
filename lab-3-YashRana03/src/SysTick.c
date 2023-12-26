@@ -1,0 +1,53 @@
+/* ------------------------------------------
+       ECS642U/714P SysTick Timer
+
+   Time the cycle in a cyclic system
+  -------------------------------------------- */
+#include <MKL25Z4.H>
+#include "..\inc\SysTick.h"
+
+/*----------------------------------------------------------------------------
+ * Configure SysTick to interrupt a given number times every second
+ *---------------------------------------------------------------------------- */
+void Init_SysTick(uint32_t ticksPerSec) {
+    uint32_t r = 0 ;
+    r = SysTick_Config(SystemCoreClock / ticksPerSec) ;
+
+    // Check return code for errors
+    if (r != 0) {
+        // Error Handling - program gets stuck here
+        while(1);
+    }
+}
+
+/*----------------------------------------------------------------------------
+ * Handle the SysTick interrupt
+ *    Decrement the SysTick counter if > 0
+ *---------------------------------------------------------------------------- */
+
+volatile uint32_t SysTickCounter ;
+
+// The counter1ms is initialised to be -1 
+uint32_t counter1ms = 0;
+// Intialised with value 0
+int counter1msON = 0;
+
+
+void SysTick_Handler(void) {
+	   
+    // Add code here to handle the SysTick counter
+
+		
+    if (SysTickCounter > 0) SysTickCounter -- ;
+		// When the counter1msON is set to true in main.c, the counter1ms will start being icremented every 1 ms
+		if (counter1msON > 0) counter1ms++;
+}
+
+/*----------------------------------------------------------------------------
+ * Wait using the SysTick interrupt
+ *    ticks: number of ms to wait
+ *---------------------------------------------------------------------------- */
+void waitSysTickCounter(int ticks) {
+    while (SysTickCounter > 0) ;
+    SysTickCounter = ticks ;
+}
