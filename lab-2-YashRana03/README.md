@@ -1,5 +1,4 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/CeFbsEgU)
-# Lab 2 COMPLETE CODE/ CHECKED IN VIVA BY LAB DEMONSTRATOR
+# Lab 2 
 
 The code:
 
